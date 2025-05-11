@@ -15,6 +15,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import React from "react";
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
@@ -32,6 +33,18 @@ const formSchema = z.object({
 });
 
 const ContactSection = () => {
+  const [formError, setFormError] = React.useState('');
+  const [formSubmitted, setFormSubmitted] = React.useState(false);
+  const [referrerSource, setReferrerSource] = React.useState('');
+
+  React.useEffect(() => {
+    // Get referrer information
+    const referrer = document.referrer;
+    if (referrer) {
+      setReferrerSource(referrer);
+    }
+  }, []);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,19 +57,37 @@ const ContactSection = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const res = await fetch('/api/google-sheet', {
+      setFormError('');
+      
+      const platformInfo = {
+        userAgent: navigator.userAgent,
+        screenWidth: window.screen.width,
+        screenHeight: window.screen.height,
+        language: navigator.language,
+        platform: navigator.platform,
+        deviceType: /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+      };
+
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...values,
+          referrer: referrerSource,
+          platformInfo,
+        }),
       });
-      if (res.ok) {
-        alert('Thanks for your message! I\'ll be in touch soon.');
-        form.reset();
-      } else {
-        alert('There was an error sending your message. Please try again.');
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
       }
+
+      setFormSubmitted(true);
+      form.reset();
     } catch (err) {
-      alert('There was an error sending your message. Please try again.');
+      setFormError('Something went wrong. Please try again later.');
     }
   }
 
@@ -72,11 +103,9 @@ const ContactSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div className="space-y-8">
-        
-
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary">
+          <div className="space-y-8 flex flex-col items-center justify-center">
+            <div className="flex items-center space-x-4 w-full max-w-md">
+              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -92,14 +121,14 @@ const ContactSection = () => {
                   />
                 </svg>
               </div>
-              <div>
+              <div className="text-center flex-grow">
                 <h3 className="font-poppins font-semibold text-lg mb-1">Phone</h3>
                 <p className="text-background/80">+44 7597 364975</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary">
+            <div className="flex items-center space-x-4 w-full max-w-md">
+              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -121,14 +150,39 @@ const ContactSection = () => {
                   />
                 </svg>
               </div>
-              <div>
+              <div className="text-center flex-grow">
                 <h3 className="font-poppins font-semibold text-lg mb-1">Location</h3>
                 <p className="text-background/80">Birmingham, UK</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary">
+            <div className="flex items-center space-x-4 w-full max-w-md">
+              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary flex-shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  className="h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <div className="text-center flex-grow">
+                <h3 className="font-poppins font-semibold text-lg mb-1">Email</h3>
+                <a href="mailto:socialsbyjosh@gmail.com" className="text-background/80 hover:text-primary transition-colors">
+                  socialsbyjosh@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-4 w-full max-w-md">
+              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -150,9 +204,9 @@ const ContactSection = () => {
                   />
                 </svg>
               </div>
-              <div>
+              <div className="text-center flex-grow">
                 <h3 className="font-poppins font-semibold text-lg mb-1">Social Media</h3>
-                <div className="flex space-x-4 mt-2">
+                <div className="flex justify-center space-x-4 mt-2">
                   <Link href="https://www.instagram.com/joshuavaughan_/" className="hover:text-primary transition-colors">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -256,9 +310,17 @@ const ContactSection = () => {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full" size="lg">
-                  Send Message
+                <Button 
+                  type="submit" 
+                  className="w-full" 
+                  size="lg"
+                  disabled={formSubmitted}
+                >
+                  {formSubmitted ? 'Thank you!' : 'Send Message'}
                 </Button>
+                {formError && (
+                  <div className="text-red-500 text-sm text-center">{formError}</div>
+                )}
               </form>
             </Form>
           </div>

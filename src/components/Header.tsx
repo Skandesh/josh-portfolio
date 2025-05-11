@@ -13,7 +13,7 @@ const Header = () => {
             </span>
             <div className="flex flex-col items-start transition-transform duration-200 group-hover:scale-105 group-hover:drop-shadow-[0_2px_8px_rgba(255,140,0,0.15)]">
               <span className="font-poppins text-2xl font-extrabold text-primary tracking-tight transition-colors duration-200 leading-none">socials</span>
-              <span className="font-[cursive] text-sm text-black-500 italic -mt-1 ml-1 animate-fade-in-up">by joshua</span>
+              <span className="font-[cursive] text-sm text-black-500 italic -mt-1 ml-1 animate-fade-in-up">by josh</span>
             </div>
           </Link>
         </div>

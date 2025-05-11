@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="flex flex-col mb-4">
               <span className="font-poppins text-2xl font-bold text-primary">socials</span>
               {/* <span className="font-poppins text-xs tracking-widest uppercase -mt-1 transform translate-y-[-2px] text-background/70">by joshua</span> */}
-              <span className="font-[cursive] text-sm text-black-500 italic -mt-1 ml-1 animate-fade-in-up">by joshua</span>
+              <span className="font-[cursive] text-sm text-black-500 italic -mt-1 ml-1 animate-fade-in-up">by josh</span>
             </div>
             <p className="text-background/70 mb-6 max-w-md">
               Building online followings for brands through engaging content, strategic management, and community growth.
