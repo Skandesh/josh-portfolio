@@ -28,7 +28,7 @@ export async function getAuthClient() {
   }
 }
 
-export async function appendToSheet(values: any[]) {
+export async function appendToSheet() {
   try {
     const auth = await getAuthClient();
     const sheets = google.sheets({ version: 'v4', auth });
