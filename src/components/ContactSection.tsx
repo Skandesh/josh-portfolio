@@ -34,6 +34,7 @@ const formSchema = z.object({
 
 const ContactSection = () => {
   const [formError, setFormError] = React.useState('');
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [formSubmitted, setFormSubmitted] = React.useState(false);
   const [referrerSource, setReferrerSource] = React.useState('');
 
@@ -56,7 +57,10 @@ const ContactSection = () => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (isSubmitting) return;
+    
     try {
+      setIsSubmitting(true);
       setFormError('');
       
       const platformInfo = {
@@ -88,7 +92,40 @@ const ContactSection = () => {
       form.reset();
     } catch (err) {
       setFormError('Something went wrong. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
+  }
+
+  if (formSubmitted) {
+    return (
+      <section id="contact" className="section bg-foreground text-background">
+        <div className="container">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-8">
+              <svg
+                className="w-16 h-16 text-primary mx-auto mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-4">Message Sent!</h2>
+              <p className="text-lg text-background/80">
+                Thank you for reaching out. I'll get back to you as soon as possible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -314,9 +351,9 @@ const ContactSection = () => {
                   type="submit" 
                   className="w-full" 
                   size="lg"
-                  disabled={formSubmitted}
+                  disabled={isSubmitting}
                 >
-                  {formSubmitted ? 'Thank you!' : 'Send Message'}
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
                 {formError && (
                   <div className="text-red-500 text-sm text-center">{formError}</div>

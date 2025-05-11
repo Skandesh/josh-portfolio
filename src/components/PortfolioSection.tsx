@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import React from "react";
 
 interface PortfolioItemProps {
   title: string;
@@ -7,13 +8,28 @@ interface PortfolioItemProps {
   views: string;
   likes: string;
   link?: string;
+  collaborationLink?: string;
 }
 
-const PortfolioItem = ({ title, subtitle, videoEmbed, views, likes, link }: PortfolioItemProps) => {
-  // Check if subtitle contains a URL or handle
-  const isSubtitleUrl = subtitle.includes('http');
-  const isHandle = subtitle.includes('@');
-  const subtitleText = isSubtitleUrl ? subtitle.split('https://')[1] : subtitle;
+const PortfolioItem = ({ title, subtitle, videoEmbed, views, likes, link, collaborationLink }: PortfolioItemProps) => {
+  // Extract brand name from subtitle
+  const getBrandName = (subtitle: string) => {
+    if (subtitle.includes('Trendhim')) return 'Trendhim';
+    if (subtitle.includes('Ultraviolet')) return 'Ultraviolet';
+    if (subtitle.includes('@joshuavaughan_')) return '@joshuavaughan_';
+    return subtitle;
+  };
+
+  // Get the appropriate link for the brand
+  const getBrandLink = (subtitle: string) => {
+    if (subtitle.includes('Trendhim')) return 'https://trendhim.co.uk';
+    if (subtitle.includes('Ultraviolet')) return 'https://ultraviolet.club';
+    if (subtitle.includes('@joshuavaughan_')) return 'https://www.instagram.com/joshuavaughan_/';
+    return link || collaborationLink;
+  };
+
+  const brandName = getBrandName(subtitle);
+  const brandLink = getBrandLink(subtitle);
 
   return (
     <Card className="overflow-hidden transition-all hover:shadow-lg group">
@@ -31,27 +47,23 @@ const PortfolioItem = ({ title, subtitle, videoEmbed, views, likes, link }: Port
         </div>
         <div className="p-5">
           <h3 className="font-poppins text-xl font-semibold">{title}</h3>
-          {isSubtitleUrl ? (
-            <a 
-              href={subtitle}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              {subtitleText}
-            </a>
-          ) : isHandle ? (
-            <a 
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              {subtitle}
-            </a>
-          ) : (
-            <p className="text-muted-foreground">{subtitle}</p>
-          )}
+          <div className="text-muted-foreground">
+            {subtitle.split(brandName).map((part, index, array) => (
+              <React.Fragment key={index}>
+                {part}
+                {index < array.length - 1 && (
+                  <a
+                    href={brandLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline transition-colors"
+                  >
+                    {brandName}
+                  </a>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
           <div className="flex gap-4 mt-3">
             <div>
               <p className="text-sm font-medium">{views}</p>
@@ -91,11 +103,10 @@ const PortfolioSection = () => {
           />
           <PortfolioItem
             title="Street Interview: Stunning Watch Giveaway"
-            subtitle="Paid Collaboration with https://www.trendhim.com/"
+            subtitle="Paid Collaboration with Trendhim"
             videoEmbed="https://drive.google.com/file/d/1U8wvwSJ3CFp_u3pKYqJu-ldE03Ya-WWh/preview"
             views="400k+"
             likes="100k+"
-            link="https://www.trendhim.co.uk"
           />
           <PortfolioItem
             title="Street Interview: Location, Location, Location"
@@ -111,15 +122,13 @@ const PortfolioSection = () => {
             videoEmbed="https://drive.google.com/file/d/1XyG94q7_4sfUl4s2ki0f9lAQuelMEFo8/preview"
             views="900k+"
             likes="90k+"
-            link="https://www.instagram.com/joshuavaughan_/"
           />
           <PortfolioItem
             title="Get Ready with me"
-            subtitle="Paid Collaboration with https://www.ultraviolet.club/"
+            subtitle="Paid Collaboration with Ultraviolet"
             videoEmbed="https://drive.google.com/file/d/1-tctQf9d0snJm-_A1IR-oGb5CJQuhWT2/preview"
             views="Internal Use"
             likes="Internal Use"
-            link="https://www.ultraviolet.club/"
           />
           <PortfolioItem
             title="Nigerian Auntie gives some brutal advice"
