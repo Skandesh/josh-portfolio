@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { appendToSheet } from '@/lib/google-sheets';
+import { appendToSheet } from '../../../../netlify/functions/google-sheets';
 
 export async function POST(request: Request) {
   try {

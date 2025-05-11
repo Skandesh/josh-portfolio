@@ -1,4 +1,4 @@
-const { appendToSheet } = require('../../src/lib/google-sheets');
+const { appendToSheet } = require('./google-sheets');
 
 exports.handler = async function(event) {
   if (event.httpMethod !== 'POST') {
