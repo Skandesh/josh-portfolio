@@ -1,4 +1,4 @@
-import { google } from 'googleapis';
+const { google } = require('googleapis');
 
 // Define the column headers for our sheet
 const HEADERS = [
@@ -11,7 +11,7 @@ const HEADERS = [
   'Platform Info',
 ];
 
-export async function getAuthClient() {
+async function getAuthClient() {
   try {
     const auth = new google.auth.GoogleAuth({
       credentials: {
@@ -28,7 +28,7 @@ export async function getAuthClient() {
   }
 }
 
-export async function appendToSheet() {
+async function appendToSheet(values) {
   try {
     const auth = await getAuthClient();
     const sheets = google.sheets({ version: 'v4', auth });
@@ -74,4 +74,6 @@ export async function appendToSheet() {
     console.error('Error appending to sheet:', error);
     throw error;
   }
-} 
+}
+
+module.exports = { appendToSheet }; 
