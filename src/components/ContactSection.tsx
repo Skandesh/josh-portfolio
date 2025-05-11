@@ -72,8 +72,7 @@ const ContactSection = () => {
         deviceType: /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
       };
 
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch('/.netlify/functions/contact', {         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
