@@ -17,6 +17,7 @@ const PortfolioItem = ({ title, subtitle, videoEmbed, views, likes, link, collab
     if (subtitle.includes('Trendhim')) return 'Trendhim';
     if (subtitle.includes('Ultraviolet')) return 'Ultraviolet';
     if (subtitle.includes('@joshuavaughan_')) return '@joshuavaughan_';
+    if (subtitle.includes('@bhamupdates')) return '@bhamupdates';
     return subtitle;
   };
 
@@ -25,6 +26,7 @@ const PortfolioItem = ({ title, subtitle, videoEmbed, views, likes, link, collab
     if (subtitle.includes('Trendhim')) return 'https://trendhim.co.uk';
     if (subtitle.includes('Ultraviolet')) return 'https://ultraviolet.club';
     if (subtitle.includes('@joshuavaughan_')) return 'https://www.instagram.com/joshuavaughan_/';
+    if (subtitle.includes('@bhamupdates')) return 'https://www.instagram.com/bhamupdates/?hl=en';
     return link || collaborationLink;
   };
 
