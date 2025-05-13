@@ -2,8 +2,8 @@ const AboutSection = () => {
   return (
     <section id="about" className="section bg-muted">
       <div className="container">
-        <div className="max-w-4xl mx-auto text-center mb-8">
-          <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-4">ABOUT</h2>
+        <div className="max-w-4xl mx-auto text-center ">
+          <h2 className="font-poppins text-3xl md:text-4xl font-bold ">ABOUT</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-10" />
         </div>
 
