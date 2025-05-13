@@ -9,12 +9,12 @@ const AboutSection = () => {
 
         {/* Image Section */}
         <div className="max-w-3xl mx-auto mb-16">
-          <div className="mx-auto rounded-2xl overflow-hidden shadow-xl bg-black aspect-square w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+          <div className="mx-auto rounded-3xl overflow-hidden shadow-xl bg-black aspect-square w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg border-4 border-white dark:border-neutral-800">
             <img
               src="https://res.cloudinary.com/ds3ltaeul/image/upload/v1747072857/Big_smile_short_hair-min_gg5q8x.jpg"
               alt="Joshua Vaughan"
               className="object-cover w-full h-full"
-              style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
+              style={{ objectFit: 'cover', objectPosition: 'center top' }}
             />
           </div>
         </div>
