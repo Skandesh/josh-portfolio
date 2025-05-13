@@ -140,7 +140,7 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="space-y-8 flex flex-col items-center justify-center">
-            <div className="flex items-center space-x-4 w-full max-w-md">
+            <div className="flex items-center space-x-1 w-full max-w-md">
               <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +163,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-4 w-full max-w-md">
+            <div className="flex items-center space-x-1 w-full max-w-md">
               <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -192,7 +192,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-4 w-full max-w-md">
+            <div className="flex items-center space-x-1 w-full max-w-md">
               <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -217,7 +217,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-4 w-full max-w-md">
+            <div className="flex items-center space-x-1 w-full max-w-md">
               <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

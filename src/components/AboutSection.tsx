@@ -8,8 +8,8 @@ const AboutSection = () => {
         </div>
 
         {/* Image Section */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <div className="mx-auto rounded-3xl overflow-hidden shadow-xl bg-black aspect-square w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg border-4 border-white dark:border-neutral-800">
+        <div className="max-w-3xl mx-auto mb-8 flex flex-col items-center">
+          <div className="w-48 h-48 rounded-full overflow-hidden shadow-lg bg-black mb-6">
             <img
               src="https://res.cloudinary.com/ds3ltaeul/image/upload/v1747072857/Big_smile_short_hair-min_gg5q8x.jpg"
               alt="Joshua Vaughan"
