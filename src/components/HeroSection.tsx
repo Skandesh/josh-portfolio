@@ -65,7 +65,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 text-center fade-in">
+        <div className="mt-36 grid grid-cols-1 md:grid-cols-3 gap-4 text-center fade-in">
           <div className="space-y-2 p-4 rounded-2xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors">
             <h3 className="font-poppins text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">5M</h3>
             <p className="text-muted-foreground uppercase tracking-wider text-sm">Total Views</p>
