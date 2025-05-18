@@ -36,14 +36,15 @@ const PortfolioItem = ({ title, subtitle, videoEmbed, views, likes, link, collab
   return (
     <Card className="overflow-hidden transition-all hover:shadow-lg group">
       <CardContent className="p-0">
-        <div className="relative h-[300px] w-full overflow-hidden">
+        <div className="relative aspect-[9/16] w-full overflow-hidden bg-black">
           {videoEmbed ? (
             <iframe
               src={videoEmbed}
               width="100%"
               height="100%"
               allow="autoplay"
-              className="object-cover"
+              className="absolute inset-0 w-full h-full object-contain"
+              style={{ aspectRatio: '9/16' }}
             />
           ) : null}
         </div>
