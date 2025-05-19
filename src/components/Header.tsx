@@ -8,13 +8,12 @@ const Header = () => {
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2 group">
             {/* Logo Icon */}
-            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/90 text-white mr-1 animate-bounce-slow shadow-md font-extrabold text-xl font-poppins">
-              J
-            </span>
-            <div className="flex flex-col items-start transition-transform duration-200 group-hover:scale-105 group-hover:drop-shadow-[0_2px_8px_rgba(255,140,0,0.15)]">
-              <span className="font-poppins text-2xl font-extrabold text-primary tracking-tight transition-colors duration-200 leading-none">socials</span>
-              <span className="font-[cursive] text-sm text-black-500 italic -mt-1 ml-1 animate-fade-in-up">by josh</span>
-            </div>
+           
+            <img
+              src="/logo.png"
+              alt="Socials by Josh Logo"
+              className="h-24 w-auto object-contain transition-transform duration-200 group-hover:scale-105 group-hover:drop-shadow-[0_2px_8px_rgba(255,140,0,0.15)]"
+            />
           </Link>
         </div>
         <nav className="hidden md:flex items-center gap-6">

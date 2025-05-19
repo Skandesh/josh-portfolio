@@ -9,11 +9,11 @@ const Footer = () => {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           <div>
-            <div className="flex flex-col mb-4">
-              <span className="font-poppins text-2xl font-bold text-primary">socials</span>
-              {/* <span className="font-poppins text-xs tracking-widest uppercase -mt-1 transform translate-y-[-2px] text-background/70">by joshua</span> */}
-              <span className="font-[cursive] text-sm text-black-500 italic -mt-1 ml-1 animate-fade-in-up">by josh</span>
-            </div>
+          <img
+              src="/josh_white_bg.png"
+              alt="Socials by Josh Logo"
+              className="h-32 w-auto object-contain transition-transform duration-200 group-hover:scale-105 group-hover:drop-shadow-[0_2px_8px_rgba(255,140,0,0.15)]"
+            />
             <p className="text-background/70 mb-6 max-w-md">
               Building online followings for brands through engaging content, strategic management, and community growth.
             </p>
