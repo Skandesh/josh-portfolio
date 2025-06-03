@@ -13,6 +13,7 @@ interface PortfolioItemProps {
   isPlaying: boolean;
   onPlay: (id: string) => void;
   id: string;
+  posterImage?: string;
 }
 
 const PortfolioItem = ({ 
@@ -25,7 +26,8 @@ const PortfolioItem = ({
   collaborationLink,
   isPlaying,
   onPlay,
-  id 
+  id,
+  posterImage
 }: PortfolioItemProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -81,6 +83,7 @@ const PortfolioItem = ({
               <video
                 ref={videoRef}
                 src={videoEmbed}
+                poster={posterImage}
                 className={`absolute inset-0 w-full h-full object-contain transition-all duration-300 ${
                   isPlaying ? 'scale-100' : 'group-hover:scale-105'
                 }`}
@@ -88,6 +91,7 @@ const PortfolioItem = ({
                 playsInline
                 muted={!isPlaying}
                 loop
+                preload="auto"
               />
               {!isPlaying && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all duration-300">

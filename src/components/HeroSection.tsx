@@ -58,6 +58,7 @@ const HeroSection = () => {
                 loop
                 muted
                 playsInline
+                preload="auto"
                 className="object-cover w-full h-full"
                 style={{ objectFit: 'cover' }}
               />
